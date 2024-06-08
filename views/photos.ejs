@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pixo</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="./style2.css">
+</head>
+<body>
+  <div class="container">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <a class="navbar-brand" href="/"><img src="/images/logo/Pixo.png" width="90px" alt="logo"></a>
+            <div class="collapse navbar-collapse">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/about">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/contact">Contact Us</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+  </div>
+ 
+  <h3 align="center">Here's your result for "<%=search%>"</h3>
+  <div id="gallery" class="grid-container">
+
+    <% if (photos && photos.length > 0) { %>
+      <% photos.forEach(photo => { %>
+        <div class="grid-item">
+            <a href="/photo/<%= photo.id %>?download_location=<%= photo.links.download_location %>">
+            <img class="imgs" src="<%= photo.urls.small %>" alt="<%= photo.description || 'Unsplash Photo' %>">
+            </a>
+        </div>
+      <% }) %>
+      <% } else { %>
+      <p>No photos available. Please enter a search term to find images.</p>
+    <% } %>
+  </div>
+  <div class="nxt">
+    <% if (photos && photos.length > 0) { %>
+    <form action="/next" method="post">
+      <input type="hidden" name="search" value="<%= search %>">
+      <input type="hidden" name="page" value="<%= page %>"> 
+      <button class="next" type="submit">Next</button>
+    </form>
+  <% } %>
+
+  </div>
+  
+</body>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pixo</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="/style2.css">
+    
+</head>
+  <body>
+    <div class="container">
+      <nav class="sticky-top navbar navbar-expand-lg navbar-light bg-light">
+            <img class="navbar-brand" src="/images/logo/Pixo.png" width="90px" alt="logo">
+            <div class="collapse navbar-collapse">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/about">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/contact">Contact Us</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    
+    <div class="flex-container">
+      <div class="flex-image">
+        <img class="pic" width="50%" src="<%= photo.urls.full %>" alt="<%= photo.description || 'Pixo Photo' %>">
+      </div>
+      <div class="download">
+      <form action="/download" method="post">
+        <input type="hidden" name="downloadUrl" value="<%= photo.links.download%>?client_id=<%= accessKey %>">
+        <input type="hidden" name="filename" value="<%= photo.id %>.jpg">
+        <button class="dwn" type="submit">Download it!</button>
+      </form>
+    </div>
+
+    </div>
+ </div>
+  </body>
+</html>
